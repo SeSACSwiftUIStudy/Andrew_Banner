@@ -7,14 +7,14 @@
 
 import Combine
 
-class BannerViewModel : ObservableObject {
+class BannerViewModel: ObservableObject {
     let receiveAddItemEvent = PassthroughSubject<Void, Never>()
-    
+
     @Published var items: [String] = ["출발~"]
-    
-    init(model:BannerModel = BannerModel()) {
+
+    init(model: BannerModel = BannerModel()) {
         receiveAddItemEvent
-            .map { _ in model.addItem(self.items)}
+            .map { _ in model.addItem(self.items) }
             .assign(to: &$items)
     }
 }

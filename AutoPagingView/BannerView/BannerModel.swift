@@ -7,11 +7,9 @@
 
 import Foundation
 struct BannerModel {
-    func addItem(_ items:[String]) -> [String] {
-        
+    func addItem(_ items: [String]) -> [String] {
         var items = items
         items.append("\(items.count + 1)번째 뷰")
         return items
-        
     }
 }

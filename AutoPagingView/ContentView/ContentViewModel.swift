@@ -9,6 +9,6 @@ import Combine
 class ContentViewModel: ObservableObject {
     let addButtonTapped = PassthroughSubject<Void, Never>()
     var cancelBag = Set<AnyCancellable>()
-    
+
     @Published var items: [String] = ["출발~"]
 }
