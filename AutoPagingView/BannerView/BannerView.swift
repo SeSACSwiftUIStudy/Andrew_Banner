@@ -8,6 +8,27 @@
 import Combine
 import SwiftUI
 
+let randomImage = ["image1", "image2", "image3", "image4"]
+
+struct BannerContentsView: View {
+    var title: String
+
+    init(title: String) {
+        self.title = title
+    }
+
+    var body: some View {
+        Image(randomImage.randomElement()!)
+            .resizable()
+            .aspectRatio(contentMode: .fit)
+            .overlay(
+                Text(title)
+                    .background(Color.random),
+                alignment: .bottomTrailing
+            )
+    }
+}
+
 struct BannerView: View {
     @ObservedObject var viewModel = BannerViewModel()
 
@@ -18,12 +39,7 @@ struct BannerView: View {
                     ScrollView(.horizontal) {
                         HStack(spacing: 0) {
                             ForEach(viewModel.items, id: \.self) { text in
-//                            Text(text).background(Color.random)
-                                Button(text) {
-                                    withAnimation {
-                                        proxy.scrollTo(viewModel.items[viewModel.items.count - 1])
-                                    }
-                                }
+                                BannerContentsView(title: text)
                             }
                             .frame(width: geometry.size.width, height: geometry.size.height)
                         }
